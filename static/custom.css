@@ -1,0 +1,46 @@
+body {
+    padding-top: 10px;
+}
+
+/*GET RID OF BROWSERS OUTLINE*/
+
+a {
+   outline: 0;
+}
+
+
+/*CUSTOM FONT SIZE*/
+
+* {
+   font-size: 15px;
+   line-height: 2;
+}
+
+
+.panel-heading.custom-heading a {
+    color: white;
+    font-size: 15px;
+}
+
+
+.panel-heading {
+    padding: 5px 15px 1px;
+}
+
+.i-right {
+    padding-right: : 50px;
+}
+
+i {
+  margin-right: 20px;
+}
+
+/* CENTER*/
+
+.logo-vcenter {
+  margin-top: 3px;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}

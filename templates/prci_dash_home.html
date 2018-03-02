@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {% if pr_details %}
+      <div class="row">
+        {% for pr in pr_details %}
+        <div class="col-md-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading custom-heading">
+              <a href="https://github.com/freeipa/freeipa/pull/{{pr.pr_number}}" target="_blank" class="logo-vcenter">PR#{{pr.pr_number}} - {{pr.pr_name}}</a>
+            </div>
+            <div class="panel-body">
+
+
+
+                      {% for run in pr.runs %}
+
+                      {% if forloop.first %}<div class="row">{% endif %}
+                          <div class="col-lg-4">
+
+                      <div class="text-nowrap">
+
+                          {% if run.run_result != 'ERR' %}<a href="{{run.run_logs_url}}" target="_blank">{{run.run_name}}</a>
+                          {% else %} {{run.run_name}} </a>
+                          {% endif %}
+                          {% if run.run_result == 'PASS' %} <i class="fa fa-check i-right" style="color:#28a745"></i>
+                          {% elif run.run_result == 'ERR' %} <i class="fa fa-clock-o i-right" style="color:#FFA500"></i>
+                          {% else %} <i class="fa fa-close i-right" style="color:#cb2431"></i>
+                          {% endif %}
+                      </div>
+                  </div>
+                      {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+
+                      {% endfor %}
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %} There are no PR data in DB. Please feed it using "pollpr" django management command"  {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Flot Charts JavaScript -->
+<script src="../vendor/flot/excanvas.min.js"></script>
+<script src="../vendor/flot/jquery.flot.js"></script>
+<script src="../vendor/flot/jquery.flot.pie.js"></script>
+<script src="../vendor/flot/jquery.flot.resize.js"></script>
+<script src="../vendor/flot/jquery.flot.time.js"></script>
+<script src="../vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+<script src="../data/flot-data.js"></script>
+{% endblock %}
